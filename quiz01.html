@@ -5,9 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>quiz_2022</title>
   <link rel="stylesheet" href="./css/main.css">
 </head>
+
+
 
 <body>
   <h1 id="title">アタック25ぷち体験</h1>
@@ -29,6 +31,7 @@
   </ul>
 </div>
  <p id="result"></p>
+ <p id="alart"></p>
   <div id="choice_place">
  
   <a href="quiz01.html"><button >スタートへ</button></a> 
@@ -117,6 +120,14 @@
           '<img src="ogi_img/ogi_03.jpg" alt="">',
           '<img src="ogi_img/ogi_04.jpeg" alt="">',
           '<img src="ogi_img/ogi_05.jpeg" alt="">',],
+       audio2: ['<audio autoplay src="quiz_arart/answer.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/else.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/countdown.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/pon.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/funy.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/wa.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/kansei.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/kansei2.mp3"></audio>',],
       },
       ];
 
@@ -140,12 +151,13 @@
   
       //q_1-----------------------------------
         $('#q_1').on('click', function () {
-           $('#answer00').text(quiz[0].answers[0]);
-
+          $('#answer00').text(quiz[0].answers[0]);
+          $('#alart').html(quiz[3].audio2[3]);
           $('#answer01').text(quiz[0].answers[1]);
           $('#answer02').text(quiz[0].answers[2]);
           $('#answer03').text(quiz[0].answers[3]);
           $('#title').html(quiz[0].hint[0]);
+
           $('#choice_place').html('<a href="quiz01.html"><button >スタートへ</button></a> ');
 
           let text_1 = function () {
@@ -182,7 +194,7 @@
           let text_5 = function () {
             $('#result').html(quiz[0].audio[4]);
             $("#q").html(quiz[0].hint[4]);
-
+            $('#alart').html(quiz[3].audio2[2]);
 
           }
           setTimeout(text_5, 20000);
@@ -190,7 +202,7 @@
           let text_6 = function () {
             $('#result').html(quiz[0].audio[5]);
             $("#q").html(quiz[0].hint[5]);
-
+            
 
           }
           setTimeout(text_6, 25000);
@@ -209,6 +221,7 @@
 
             // const q_button = '<div id="q"> <button > スタート</button></div>';
             $('.answer').html("<h2 class='a_answer'>あたり！！</h2>");
+            $('#alart').html(quiz[3].audio2[0]);
 
 
 
@@ -217,6 +230,7 @@
             //結果を配列に追加
             result.push("不正解")
             console.log(result);
+            $('#alart').html(quiz[3].audio2[1]);
 
 
           }
@@ -230,7 +244,7 @@
        //q_2-----------------------------------
         $('#q_2').on('click', function () {
            $('#answer00').text(quiz[1].answers[0]);
-
+          $('#alart').html(quiz[3].audio2[3]);
           $('#answer01').text(quiz[1].answers[1]);
           $('#answer02').text(quiz[1].answers[2]);
           $('#answer03').text(quiz[1].answers[3]);
@@ -271,7 +285,7 @@
           let text_5 = function () {
             $('#result').html(quiz[1].audio[4]);
             $("#q").html(quiz[1].hint[4]);
-
+            $('#alart').html(quiz[3].audio2[2]);
 
           }
           setTimeout(text_5, 20000);
@@ -279,8 +293,7 @@
           let text_6 = function () {
             $('#result').html(quiz[1].audio[5]);
             $("#q").html(quiz[1].hint[5]);
-
-
+            
           }
           setTimeout(text_6, 25000);
 
@@ -298,6 +311,7 @@
 
               // const q_button = '<div id="q"> <button > スタート</button></div>';
               $('.answer').html("<h2 class='a_answer'>あたり！！</h2>");
+              $('#alart').html(quiz[3].audio2[0]);
 
 
 
@@ -306,6 +320,7 @@
               //結果を配列に追加
               result.push("不正解")
               console.log(result);
+              $('#alart').html(quiz[3].audio2[1]);
 
 
             }
@@ -318,8 +333,8 @@
       
          //q_3-----------------------------------
           $('#q_3').on('click', function () {
-             $('#answer00').text(quiz[2].answers[0]);
-
+            $('#answer00').text(quiz[2].answers[0]);
+            $('#alart').html(quiz[3].audio2[3]);
             $('#answer01').text(quiz[2].answers[1]);
             $('#answer02').text(quiz[2].answers[2]);
             $('#answer03').text(quiz[2].answers[3]);
@@ -359,6 +374,7 @@
             let text_5 = function () {
               $('#result').html(quiz[2].audio[4]);
               $("#q").html(quiz[2].hint[4]);
+              
 
 
             }
@@ -367,6 +383,7 @@
             let text_6 = function () {
               $('#result').html(quiz[2].audio[5]);
               $("#q").html(quiz[2].hint[5]);
+              $('#alart').html(quiz[3].audio2[2]);
 
 
             }
@@ -386,6 +403,7 @@
 
                 // const q_button = '<div id="q"> <button > スタート</button></div>';
                 $('.answer').html("<h2 class='a_answer'>あたり！！</h2>");
+                $('#alart').html(quiz[3].audio2[0]);
 
 
 
@@ -394,6 +412,7 @@
                 //結果を配列に追加
                 result.push("不正解")
                 console.log(result);
+                $('#alart').html(quiz[3].audio2[1]);
 
 
               }
@@ -408,7 +427,7 @@
 
         $('#ogiri').on('click', function () {
           $('#answer00').text(quiz[2].answers[0]);
-
+          
           $('#answer01').text(quiz[2].answers[1]);
           $('#answer02').text(quiz[2].answers[2]);
           $('#answer03').text(quiz[2].answers[3]);
@@ -425,6 +444,7 @@
           let text_2 = function () {
             $('#result').html(quiz[3].audio[1]);
             $("#q").html(quiz[3].hint[1]);
+            $('#alart').html(quiz[3].audio2[4]);
           //  $('.answer').html(quiz[3].img[0])
 
           }
@@ -433,6 +453,7 @@
           let text_3 = function () {
             $('#result').html(quiz[3].audio[2]);
             $("#q").html(quiz[3].hint[2]);
+             $('#alart').html(quiz[3].audio2[3]);
          //   $('.answer').html(quiz[3].img[1])
 
 
@@ -442,7 +463,9 @@
           let text_4 = function () {
             $('#result').html(quiz[3].audio[3]);
             $("#q").html(quiz[3].hint[3]);
-            $('.answer').html(quiz[3].img[0])
+            $('.answer').html(quiz[3].img[0]);
+            $('#alart').html(quiz[3].audio2[5]);
+           
 
 
           }
@@ -451,7 +474,8 @@
           let text_5 = function () {
             $('#result').html(quiz[3].audio[4]);
             $("#q").html(quiz[3].hint[4]);
-            $('.answer').html(quiz[3].img[1])
+            $('.answer').html(quiz[3].img[1]);
+            $('#alart').html(quiz[3].audio2[7]);
 
 
           }
@@ -460,7 +484,8 @@
           let text_6 = function () {
             $('#result').html(quiz[3].audio[5]);
             $("#q").html(quiz[3].hint[5]);
-            $('.answer').html(quiz[3].img[2])
+            $('.answer').html(quiz[3].img[2]);
+            $('#alart').html(quiz[3].audio2[5]);
 
 
           }
@@ -469,7 +494,8 @@
           let text_7 = function () {
            $('#result').html(quiz[3].audio[6]);
             $("#q").html(quiz[3].hint[6]);
-            $('.answer').html(quiz[3].img[3])
+            $('.answer').html(quiz[3].img[3]);
+            $('#alart').html(quiz[3].audio2[7]);
 
 
           }
@@ -487,6 +513,7 @@
         //    $('#result').html(quiz[3].audio[8]);
          //   $("#q").html(quiz[3].hint[8]);
             $('.answer').html(quiz[3].img[4])
+            $('#alart').html(quiz[3].audio2[4]);
 
 
           }
