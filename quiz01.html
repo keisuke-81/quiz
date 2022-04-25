@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>quiz_2022</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+
+
+<body>
+  <h1 id="title">アタック25ぷち体験</h1>
+<div class="btn" id="q">
+  <button class="q" id="q_1"> 第一問</button>
+  <button class="q" id="q_2"> 第二問</button>
+  <button class="q" id="q_3"> 第三問</button>
+</div>
+<!-- <audio autoplay src="quiz_audio1/audio1_1.mp3"></audio> -->
+  
+
+  <p id="question"></p>
+<div class="answer">
+  <ul>
+    <li><button class="a_button" id="answer00">0</button></li>
+    <li><button class="a_button"  id="answer01">1</button></li>
+    <li><button class="a_button" id="answer02">2</button></li>
+    <li><button class="a_button"id="answer03">3</button></li>
+  </ul>
+</div>
+ <p id="result"></p>
+ <p id="alart"></p>
+  <div id="choice_place">
+ 
+  <a href="index.html"><button >スタートへ</button></a> 
+  <button id="ogiri">疲れたあなたへ</button>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <script>
+
+    const quiz = [
+      {
+      question: 'プログラミングにおいて次の3つの中で最も重要なものはなにか．',
+      answers: ['鬼ヶ島町', '天麩羅処ひらお市', 'ゴッサムシティ', '会津若松市'],
+      hint:['この都市の名前は何でしょう？',
+            'まんじゅうの天ぷらが名物',
+            '鬼滅の刃・無限城そっくりの旅館が話題',
+            '国の重要文化財さざえ堂や白虎隊が有名',
+            '赤瓦の鶴ヶ城（つるがじょう）がある',
+            '答え：会津若松市（あいづわかまつし）'],
+      audio:['<audio autoplay src="quiz_audio1/audio1_1.mp3"></audio>',
+              '<audio autoplay src="quiz_audio1/audio1_2.mp3">この質問はあ難しい</audio>', 
+              '<audio autoplay src="quiz_audio1/audio1_3.mp3">この質問はあ難しい</audio>', 
+              '<audio autoplay src="quiz_audio1/audio1_4.mp3">この質問はあ難しい</audio>',
+              '<audio autoplay src="quiz_audio1/audio1_5.mp3">この質問はあ難しい</audio>',
+              '<audio autoplay src="quiz_audio1/audio1_6.mp3">この質問はあ難しい</audio>'
+            ],
+      correct: 3,
+      },
+      {
+      question: 'プログラミングにおいて次の3つの中で最も重要なものはなにか．',
+      answers:['手のひらを太陽に','機関車トーマスソング','ポケモン言えるかな？','あずさ２号'],
+      hint: ['この曲のタイトルを当ててください',
+            'その名が付けられた列車がある',
+            '小学校の音楽の教科書に掲載されている',
+            'ボニージャックスをはじめ多くの歌手が歌っている',
+            'さまざまな生き物が歌詞に登場し振り付きの動画も人気',
+            '答え：手のひらを太陽に'],
+      audio: ['<audio autoplay src="quiz_audio2/audio2_1.mp3"></audio>',
+              '<audio autoplay src="quiz_audio2/audio2_2.mp3"></audio>', 
+              '<audio autoplay src="quiz_audio2/audio2_3.mp3"></audio>', 
+              '<audio autoplay src="quiz_audio2/audio2_4.mp3"></audio>',
+              '<audio autoplay src="quiz_audio2/audio2_5.mp3"></audio>',
+              '<audio autoplay src="quiz_audio2/audio2_6.mp3"></audio>'],
+      correct: 0,
+      },
+      {
+      question: 'プログラミングにおいて次の3つの中で最も重要なものはなにか．',
+      answers: ['ナスなすお', '藤子不二雄', '葛飾北斎', 'アインシュタイン'],
+      hint: ['この人物は誰でしょう？',
+            '1760年、現在の東京都墨田区生まれ',
+            '東京都墨田区に名前を冠した美術館がある',
+            '挿絵などを手がけ、その後もさまざまな作品を発表',
+            'ゴッホなどに影響を与えた',
+            'パスポートに代表作「富嶽三十六景」が描かれている',
+            '答え：葛飾北斎（かつしかほくさい）'],
+      audio: ['<audio autoplay src="quiz_audio3/audio3_1.mp3"></audio>', 
+              '<audio autoplay src="quiz_audio3/audio3_2.mp3"></audio>',
+              '<audio autoplay src="quiz_audio3/audio3_3.mp3"></audio>', 
+              '<audio autoplay src="quiz_audio3/audio3_4.mp3"></audio>',
+              '<audio autoplay src="quiz_audio3/audio3_5.mp3"></audio>',
+              '<audio autoplay src="quiz_audio3/audio3_6.mp3"></audio>',
+              '<audio autoplay src="quiz_audio3/audio3_7.mp3"></audio>'],
+      correct: 2,
+
+      },
+      {
+      hint: ['疲れたあなたへ、楽しんでいただけたら幸いです',
+            '大喜利やってしまいます',
+            'お題】 パソコンの全ボタンを一斉に押したら何が起きますか？',
+            '誰かのパソコンの全ボタンがニュッと出る（麒麟 川島）',
+            'ビルゲイツの椅子にちょっと電気が流れる（アンガールズ 田中）',
+            'マウスが飛びかかってくる（麒麟 川島明）',
+            'パソコンの画面に「自分がされたらどう？」（アインシュタイン 稲田）',
+            'デスクトップの画面に柴田理恵の成人式の写真が出てくる（麒麟 川島）'],
+      audio:['<audio autoplay src="quiz_audio4/audio4_1.mp3"></audio>',
+            '<audio autoplay src="quiz_audio4/audio4_2.mp3"></audio>',
+            '<audio autoplay src="quiz_audio4/audio4_3.mp3"></audio>',
+            '<audio autoplay src="quiz_audio4/audio4_4.mp3"></audio>',
+            '<audio autoplay src="quiz_audio4/audio4_5.mp3"></audio>',
+            '<audio autoplay src="quiz_audio4/audio4_6.mp3"></audio>',
+            '<audio autoplay src="quiz_audio4/audio4_7.mp3"></audio>',
+            '<audio autoplay src="quiz_audio4/audio4_8.mp3"></audio>', ],
+      img:['<img src="ogi_img/ogi_01.jpeg" alt="">',
+          '<img src="ogi_img/ogi_02.jpeg" alt="">',
+          '<img src="ogi_img/ogi_03.jpg" alt="">',
+          '<img src="ogi_img/ogi_04.jpeg" alt="">',
+          '<img src="ogi_img/ogi_05.jpeg" alt="">',],
+       audio2: ['<audio autoplay src="quiz_arart/answer.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/else.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/countdown.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/pon.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/funy.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/wa.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/kansei.mp3"></audio>',
+          '<audio autoplay src="quiz_arart/kansei2.mp3"></audio>',],
+      },
+      ];
+
+    const result = [];
+    //$('#question').text(quiz.question);
+
+    // $('#answer00').text(quiz[result.length].answers[0]);
+               
+    // $('#answer01').text(quiz[result.length].answers[1]);
+    // $('#answer02').text(quiz[result.length].answers[2]);
+    // $('#answer03').text(quiz[result.length].answers[3]);
+    //$('#answer04').text(quiz[result.length].answers[4]);
+    
+    $('#answer00').val(0);
+    $('#answer01').val(1);
+    $('#answer02').val(2);
+    $('#answer03').val(3);
+   // $('#answer04').val(4);
+
+    
+  
+      //q_1-----------------------------------
+        $('#q_1').on('click', function () {
+          $('#answer00').text(quiz[0].answers[0]);
+          $('#alart').html(quiz[3].audio2[3]);
+          $('#answer01').text(quiz[0].answers[1]);
+          $('#answer02').text(quiz[0].answers[2]);
+          $('#answer03').text(quiz[0].answers[3]);
+          $('#title').html(quiz[0].hint[0]);
+
+          $('#choice_place').html('<a href="quiz01.html"><button >スタートへ</button></a> ');
+
+          let text_1 = function () {
+            $('#result').html(quiz[0].audio[0]);
+            $("#q").html(quiz[0].hint[0]);
+
+          }
+          setTimeout(text_1, 000);
+
+          let text_2 = function () {
+            $('#result').html(quiz[0].audio[1]);
+            $("#q").html(quiz[0].hint[1]);
+
+
+          }
+          setTimeout(text_2, 5000);
+
+          let text_3 = function () {
+            $('#result').html(quiz[0].audio[2]);
+            $("#q").html(quiz[0].hint[2]);
+
+
+          }
+          setTimeout(text_3, 10000);
+
+          let text_4 = function () {
+            $('#result').html(quiz[0].audio[3]);
+            $("#q").html(quiz[0].hint[3]);
+
+
+          }
+          setTimeout(text_4, 15000);
+
+          let text_5 = function () {
+            $('#result').html(quiz[0].audio[4]);
+            $("#q").html(quiz[0].hint[4]);
+            $('#alart').html(quiz[3].audio2[2]);
+
+          }
+          setTimeout(text_5, 20000);
+
+          let text_6 = function () {
+            $('#result').html(quiz[0].audio[5]);
+            $("#q").html(quiz[0].hint[5]);
+            
+
+          }
+          setTimeout(text_6, 25000);
+
+          let text_7 = function () {
+            $('#result').html(quiz[0].audio[6]);
+            $("#q").html(quiz[0].hint[6]);
+
+
+          }
+          setTimeout(text_7, 30000);
+
+          $('.a_button').on('click', function (e) {
+
+           if (Number(e.target.value) === quiz[0].correct) {
+
+            // const q_button = '<div id="q"> <button > スタート</button></div>';
+            $('.answer').html("<h2 class='a_answer'>あたり！！</h2>");
+            $('#alart').html(quiz[3].audio2[0]);
+
+
+
+          } else {
+            $('.answer').html(" <h2 class= 'a_answer' > 不正解・・・</h2 >");
+            //結果を配列に追加
+            result.push("不正解")
+            console.log(result);
+            $('#alart').html(quiz[3].audio2[1]);
+
+
+          }
+           });
+
+
+
+
+        });
+
+       //q_2-----------------------------------
+        $('#q_2').on('click', function () {
+           $('#answer00').text(quiz[1].answers[0]);
+          $('#alart').html(quiz[3].audio2[3]);
+          $('#answer01').text(quiz[1].answers[1]);
+          $('#answer02').text(quiz[1].answers[2]);
+          $('#answer03').text(quiz[1].answers[3]);
+          $('#title').html(quiz[1].hint[0])
+          $('#choice_place').html('<a href="quiz01.html"><button >スタートへ</button></a> ');
+          let text_1 = function () {
+            $('#result').html(quiz[1].audio[0]);
+            $("#q").html(quiz[1].hint[0]);
+            
+
+          }
+          setTimeout(text_1, 000);
+
+          let text_2 = function () {
+            $('#result').html(quiz[1].audio[1]);
+            $("#q").html(quiz[1].hint[1]);
+
+
+          }
+          setTimeout(text_2, 5000);
+
+          let text_3 = function () {
+            $('#result').html(quiz[1].audio[2]);
+            $("#q").html(quiz[1].hint[2]);
+
+
+          }
+          setTimeout(text_3, 10000);
+
+          let text_4 = function () {
+            $('#result').html(quiz[1].audio[3]);
+            $("#q").html(quiz[1].hint[3]);
+
+
+          }
+          setTimeout(text_4, 15000);
+
+          let text_5 = function () {
+            $('#result').html(quiz[1].audio[4]);
+            $("#q").html(quiz[1].hint[4]);
+            $('#alart').html(quiz[3].audio2[2]);
+
+          }
+          setTimeout(text_5, 20000);
+
+          let text_6 = function () {
+            $('#result').html(quiz[1].audio[5]);
+            $("#q").html(quiz[1].hint[5]);
+            
+          }
+          setTimeout(text_6, 25000);
+
+          let text_7 = function () {
+            $('#result').html(quiz[1].audio[6]);
+            $("#q").html(quiz[1].hint[6]);
+
+
+          }
+          setTimeout(text_7, 30000);
+
+          $('.a_button').on('click', function (e) {
+
+            if (Number(e.target.value) === quiz[1].correct) {
+
+              // const q_button = '<div id="q"> <button > スタート</button></div>';
+              $('.answer').html("<h2 class='a_answer'>あたり！！</h2>");
+              $('#alart').html(quiz[3].audio2[0]);
+
+
+
+            } else {
+              $('.answer').html("<h2 class= 'a_answer' > 不正解・・・</h2 >");
+              //結果を配列に追加
+              result.push("不正解")
+              console.log(result);
+              $('#alart').html(quiz[3].audio2[1]);
+
+
+            }
+          });
+
+
+
+
+        });
+      
+         //q_3-----------------------------------
+          $('#q_3').on('click', function () {
+            $('#answer00').text(quiz[2].answers[0]);
+            $('#alart').html(quiz[3].audio2[3]);
+            $('#answer01').text(quiz[2].answers[1]);
+            $('#answer02').text(quiz[2].answers[2]);
+            $('#answer03').text(quiz[2].answers[3]);
+            $('#title').html(quiz[2].hint[0])
+            $('#choice_place').html('<a href="quiz01.html"><button >スタートへ</button></a> ');
+            let text_1 = function () {
+              $('#result').html(quiz[2].audio[0]);
+              $("#q").html(quiz[2].hint[0]);
+
+            }
+            setTimeout(text_1, 000);
+
+            let text_2 = function () {
+              $('#result').html(quiz[2].audio[1]);
+              $("#q").html(quiz[2].hint[1]);
+
+
+            }
+            setTimeout(text_2, 5000);
+
+            let text_3 = function () {
+              $('#result').html(quiz[2].audio[2]);
+              $("#q").html(quiz[2].hint[2]);
+
+
+            }
+            setTimeout(text_3, 10000);
+
+            let text_4 = function () {
+              $('#result').html(quiz[2].audio[3]);
+              $("#q").html(quiz[2].hint[3]);
+
+
+            }
+            setTimeout(text_4, 15000);
+
+            let text_5 = function () {
+              $('#result').html(quiz[2].audio[4]);
+              $("#q").html(quiz[2].hint[4]);
+              
+
+
+            }
+            setTimeout(text_5, 20000);
+
+            let text_6 = function () {
+              $('#result').html(quiz[2].audio[5]);
+              $("#q").html(quiz[2].hint[5]);
+              $('#alart').html(quiz[3].audio2[2]);
+
+
+            }
+            setTimeout(text_6, 25000);
+
+            let text_7 = function () {
+              $('#result').html(quiz[2].audio[6]);
+              $("#q").html(quiz[2].hint[6]);
+
+
+            }
+            setTimeout(text_7, 30000);
+
+            $('.a_button').on('click', function (e) {
+
+              if (Number(e.target.value) === quiz[2].correct) {
+
+                // const q_button = '<div id="q"> <button > スタート</button></div>';
+                $('.answer').html("<h2 class='a_answer'>あたり！！</h2>");
+                $('#alart').html(quiz[3].audio2[0]);
+
+
+
+              } else {
+                $('.answer').html("<h2 class= 'a_answer' > 不正解・・・</h2 >");
+                //結果を配列に追加
+                result.push("不正解")
+                console.log(result);
+                $('#alart').html(quiz[3].audio2[1]);
+
+
+              }
+            });
+
+
+
+
+          });
+
+      //oogiri-----------------------------------
+
+        $('#ogiri').on('click', function () {
+          $('#answer00').text(quiz[2].answers[0]);
+          
+          $('#answer01').text(quiz[2].answers[1]);
+          $('#answer02').text(quiz[2].answers[2]);
+          $('#answer03').text(quiz[2].answers[3]);
+          $('#title').html(quiz[3].hint[2])
+          $('#choice_place').html('<a href="quiz01.html"><button >スタートへ</button></a> ');
+          let text_1 = function () {
+            $('#result').html(quiz[3].audio[0]);
+           // $("#q").html(quiz[3].hint[0]);
+            
+
+          }
+          setTimeout(text_1, 000);
+
+          let text_2 = function () {
+            $('#result').html(quiz[3].audio[1]);
+            $("#q").html(quiz[3].hint[1]);
+            $('#alart').html(quiz[3].audio2[4]);
+          //  $('.answer').html(quiz[3].img[0])
+
+          }
+          setTimeout(text_2, 5000);
+
+          let text_3 = function () {
+            $('#result').html(quiz[3].audio[2]);
+            $("#q").html(quiz[3].hint[2]);
+             $('#alart').html(quiz[3].audio2[3]);
+         //   $('.answer').html(quiz[3].img[1])
+
+
+          }
+          setTimeout(text_3, 10000);
+
+          let text_4 = function () {
+            $('#result').html(quiz[3].audio[3]);
+            $("#q").html(quiz[3].hint[3]);
+            $('.answer').html(quiz[3].img[0]);
+            $('#alart').html(quiz[3].audio2[5]);
+           
+
+
+          }
+          setTimeout(text_4, 15000);
+
+          let text_5 = function () {
+            $('#result').html(quiz[3].audio[4]);
+            $("#q").html(quiz[3].hint[4]);
+            $('.answer').html(quiz[3].img[1]);
+            $('#alart').html(quiz[3].audio2[7]);
+
+
+          }
+          setTimeout(text_5, 20000);
+
+          let text_6 = function () {
+            $('#result').html(quiz[3].audio[5]);
+            $("#q").html(quiz[3].hint[5]);
+            $('.answer').html(quiz[3].img[2]);
+            $('#alart').html(quiz[3].audio2[5]);
+
+
+          }
+          setTimeout(text_6, 25000);
+
+          let text_7 = function () {
+           $('#result').html(quiz[3].audio[6]);
+            $("#q").html(quiz[3].hint[6]);
+            $('.answer').html(quiz[3].img[3]);
+            $('#alart').html(quiz[3].audio2[7]);
+
+
+          }
+          setTimeout(text_7, 30000);
+          let text_8 = function () {
+           $('#result').html(quiz[3].audio[7]);
+            $("#q").html(quiz[3].hint[7]);
+           // $('.answer').html(quiz[3].img[4])
+
+
+          }
+          setTimeout(text_8, 35000);
+
+          let text_9 = function () {
+        //    $('#result').html(quiz[3].audio[8]);
+         //   $("#q").html(quiz[3].hint[8]);
+            $('.answer').html(quiz[3].img[4])
+            $('#alart').html(quiz[3].audio2[4]);
+
+
+          }
+          setTimeout(text_9, 38000);
+          let text_10 = function () {
+           // $('#result').html(quiz[3].audio[8]);
+           // $("#q").html(quiz[3].hint[8]);
+            $('.answer').html(quiz[3].img[5])
+
+
+          }
+          setTimeout(text_10, 44000);
+
+
+
+
+        });
+
+  </script>
+</body>
+
+</html>
