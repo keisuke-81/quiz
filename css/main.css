@@ -1,0 +1,75 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url(../img/atack25.jpeg)
+}
+h1{
+  font-size: 3rem;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  
+}
+.btn{
+  display: flex;
+}
+
+#question{
+  background: cornsilk;
+}
+
+.q,#q{
+  height: 150px;
+  font-size: 2rem;
+  background: aliceblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+#q button{
+  padding: auto auto;
+  background: cornsilk;
+}
+
+li {
+  list-style: none;
+  height: 50px;
+  margin-top: 10px;
+  
+}
+li button{
+  width: 400px;
+  font-size: 2rem;
+  background: cornsilk;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  margin: 10px;
+  background: cornsilk;
+}
+
+#result {
+  font-size: 2rem;
+}
+.answer h2{
+  background: cornsilk;
+  font-size: 4rem;
+  
+
+}
+
+#title{
+  background: cornsilk;
+}
+.answer img{
+  height: 500px;
+}
